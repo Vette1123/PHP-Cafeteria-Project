@@ -1,2 +1,2 @@
 <?php 
-echo "Hello Home";
+echo "Hello Products";
