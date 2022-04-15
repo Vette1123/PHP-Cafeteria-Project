@@ -168,20 +168,6 @@ require("./dataBase.php");
                             $sum = [];
                             foreach ($products as $product) {
                             ?>
-                                <!-- <div class="grid grid-rows-4 gap-4" style="margin: 10px;">
-                                    <div class="thumbnail d-flex align-items-baseline">
-                                        <img src="<?php echo "../Admin/images/product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
-                                        <div class="caption">
-                                            <p>EGP <?php echo $product['price'] ?><input type="hidden" class="iPrice" value="$product[price]"></p>
-                                            <p>Quantity : <?php echo $product['quantity'] ?><input type="hidden" class="iQuantity" value="$product[quantity]"></p>
-                                        </div>
-                                        <div class="align-content-end">
-                                            <?php $total = ($product['price']) * ($product['quantity']);
-                                            array_push($sum, $total) ?>
-                                            <p class="text-center " style="color:white" name="total">Total :<?php echo $total ?></p>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <!-- to be deleted -->
                                 <div class="w-80 m-6 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                                     <img class="p-8 rounded-t-lg" src="<?php echo "./images/product_image/" . $product['picture'] ?>" alt="product image">
