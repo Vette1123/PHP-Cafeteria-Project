@@ -52,7 +52,6 @@ class DataBase
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $user_orders = $stmt->fetchAll();
-            var_dump($user_orders);
             return $user_orders;
         } catch (PDOException $e) {
             echo $e->getMessage();
