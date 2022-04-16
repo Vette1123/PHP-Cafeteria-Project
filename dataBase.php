@@ -42,6 +42,23 @@ class DataBase
             echo $e->getMessage();
         }
     }
+    public function selectUsersWithDate($from, $to)
+    {
+
+        try {
+            $query = "SELECT users.id ,name , SUM(totalPrice) as totalPrice FROM users JOIN orders ON users.id = orders.user_id and date between '$from' and '$to'  GROUP BY name";
+
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            var_dump($user_orders);
+            return $user_orders;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function selectAllByTableName($table_name)
     {
         $query = "SELECT * FROM $table_name";
@@ -50,6 +67,23 @@ class DataBase
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    public function selectUserOrdersByid($userid)
+    {
+
+        try {
+            $query = "SELECT users.id ,name , SUM(totalPrice) as totalPrice FROM users JOIN orders ON users.id = orders.user_id AND users.id = $userid GROUP BY name";
+
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function selectUserOrders($uid)
     {
 
@@ -90,6 +124,30 @@ class DataBase
             return false;
         }
     }
+    public function selectAllUsers($table_name)
+    {
+        $query = "SELECT * FROM $table_name";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    public function showusers()
+    {
+
+        try {
+
+            $query1 = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id  GROUP BY name";
+            $stmt = $this->db->prepare($query1);
+            $stmt->execute();
+            $orders = $stmt->fetchAll();
+
+            return $orders;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function getProductsInOrders($oid)
     {
         try {
