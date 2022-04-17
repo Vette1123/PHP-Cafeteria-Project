@@ -14,14 +14,16 @@ require("./dataBase.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.13.6/dist/full.css" rel="stylesheet" type="text/css" />
-    <style>
-        .accordion-collapse {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
+    <!-- <style>
+        .custom {
+            background-color: #fafafa !important;
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 5px !important;
+            padding: 10px !important;
+            margin: 1rem !important;
+            width: 80rem !important;
         }
-    </style>
-
+    </style> -->
 </head>
 
 <body>
@@ -125,7 +127,7 @@ require("./dataBase.php");
             </div>
         </form>
         <!-- table  -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg container mx-auto my-12">
+        <div class="shadow-md sm:rounded-lg my-12">
             <table class="w-full text-sm text-gray-500 dark:text-gray-400">
                 <thead class="text-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="text-center">
@@ -161,39 +163,41 @@ require("./dataBase.php");
                     <?php
                     foreach ($users as $user) {
                     ?>
-                        <div class="text-center">
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="w-max p-4 text-center">
-                                    <div class="items-center">
-                                        <button class="btn btn-default btn-lg items-center" data-bs-toggle="collapse" data-bs-target="<?php echo "#ideksde" . $user['id'] ?>" aria-expanded="true" aria-controls="<?php echo "#ideksde" . $user['id'] ?>">
-                                            <svg class=" w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                                <th class="px-6 py-4 text-2xl text-gray-900 dark:text-white whitespace-nowrap text-center capitalize ">
-                                    <?php echo $user["name"] ?>
-                                </th>
-                                <td class="px-6 py-4 text-2xl capitalize text-center capitalize ">
-                                    <?php echo $user["totalPrice"] ?>
-                                </td>
-                            </tr>
-                        </div>
+                        <!-- <div class="text-center"> -->
+                        <tr class="table-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="w-max p-4 text-center">
+                                <div class="items-center">
+                                    <button class="btn btn-default btn-lg items-center" data-bs-toggle="collapse" data-bs-target="<?php echo "#ideksde" . $user['id'] ?>" aria-expanded="true" aria-controls="<?php echo "#ideksde" . $user['id'] ?>">
+                                        <svg class=" w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                            <th class="px-6 py-4 text-2xl text-gray-900 dark:text-white whitespace-nowrap text-center capitalize ">
+                                <?php echo $user["name"] ?>
+                            </th>
+                            <td class="px-6 py-4 text-2xl capitalize text-center capitalize ">
+                                <?php echo $user["totalPrice"] ?>
+                            </td>
+                        </tr>
+                        <!-- </div> -->
                         <!-- end for users -->
-                        <tr class="collapse accordion-collapse flex justify-center " id="<?php echo "ideksde" . $user['id'] ?>">
-                            <td>
-                                <table class="text-gray-500 dark:text-gray-400">
-                                    <thead class="w-full text-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
-                                        <tr class="text-center w-full">
+                        <tr class="collapse flex justify-center m-12" id="<?php echo "ideksde" . $user['id'] ?>">
+                            <td class="w-0"></td>
+                            <td class="w-0"></td>
+                            <td class="grid place-content-center">
+                                <table class="mx-12 text-gray-500 dark:text-gray-400">
+                                    <thead class="text-2xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                        <tr class="text-center table-auto">
                                             <th class="px-6 py-3 hover:text-sky-400">
-                                                <div class="uppercase text-lg font-medium text-gray-500 dark:text-gray-100">Toggle Product</div>
+                                                Toggle Product
                                             </th>
                                             <th class="px-6 py-3 hover:text-sky-400">
-                                                <div class="uppercase  text-lg font-medium text-gray-500 dark:text-gray-100">Quantity</div>
+                                                Date
                                             </th>
                                             <th class="px-6 py-3 hover:text-sky-400">
-                                                <div class="uppercase text-lg font-medium text-gray-500 dark:text-gray-100">Price</div>
+                                                Price
                                             </th>
                                         </tr>
                                     </thead>
@@ -207,7 +211,7 @@ require("./dataBase.php");
                                         }
                                         foreach ($orders as $order) {
                                         ?>
-                                            <tr class="text-center">
+                                            <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                 <td>
                                                     <button class="btn btn-default btn-lg items-center" data-bs-toggle="collapse" data-bs-target="<?php echo "#cont2" . $order['id'] ?>" aria-expanded="true" aria-controls="<?php echo "#cont2" . $order['id'] ?>">
                                                         <svg class=" w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -215,9 +219,8 @@ require("./dataBase.php");
                                                         </svg>
                                                     </button>
                                                 </td>
-                                                <td><?php echo $order["date"] ?></td>
-                                                <td><?php echo $order["totalPrice"] ?></td>
-
+                                                <td class="px-8 py-8 text-lg text-gray-900 dark:text-white whitespace-nowrap text-center"><?php echo $order["date"] ?></td>
+                                                <td class="px-8 py-8 text-center text-xl"><?php echo $order["totalPrice"] ?></td>
                                             </tr>
                                             <tr class="collapse" id="<?php echo "cont2" . $order['id'] ?>">
                                                 <td>
