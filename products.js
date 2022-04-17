@@ -25,6 +25,7 @@ let cart = [];
 
 function populatCartItems(){
     const cartItemsSection = document.querySelector('.cart-items');
+    updatePrice();
     cart.forEach(item => {
         const productDiv = document.createElement('div');
         productDiv.className= 'form-controls', 'p-2', 'flex', 'items-center', 'mb-3';
@@ -182,5 +183,18 @@ function setCartItemValue(id, amount){
 
 document.querySelectorAll('.drink').forEach(card => {
     card.addEventListener('click', addItemToCart)
-})
+});
+
+function updatePrice(){
+    const priceSpan = document.querySelector('.total-price');
+    const totalPrice = cart.reduce((a, c) => {
+        return a + c.product_amount * c.product_price;
+    }, 0);
+    if(totalPrice){
+        priceSpan.innerHTML = totalPrice;
+    }else{
+        priceSpan.innerHTML = "00.00";
+    }
+    console.log(totalPrice);
+}
 populatCartItems();
