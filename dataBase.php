@@ -131,7 +131,7 @@ class DataBase
         $result = $stmt->fetchAll();
         return $result;
     }
-    public function showusers()
+    public function showUsers()
     {
 
         try {
@@ -140,7 +140,6 @@ class DataBase
             $stmt = $this->db->prepare($query1);
             $stmt->execute();
             $orders = $stmt->fetchAll();
-
             return $orders;
         } catch (PDOException $e) {
             echo $e->getMessage();

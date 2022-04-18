@@ -157,7 +157,7 @@ require("./dataBase.php");
                         $selected = $_GET['selectedUser'];
                         $users = $db->selectUserOrdersByid($selected);
                     } else {
-                        $users = $db->showusers();
+                        $users = $db->showUsers();
                     }
                     ?>
                     <?php
