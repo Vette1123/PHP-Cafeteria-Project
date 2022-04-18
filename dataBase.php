@@ -79,11 +79,11 @@ class DataBase
             $user_orders = $stmt->fetchAll();
             return $user_orders;
         } catch (PDOException $e) {
-            return false;
+            echo $e->getMessage();
         }
     }
 
-    public function selectUserOrders($uid)
+    public function selectUserOrdersFilteredByDate($uid)
     {
 
         try {

@@ -108,7 +108,7 @@ require("./dataBase.php");
                         Status
                     </th>
                     <th scope="col" class="px-6 py-3 hover:text-sky-400">
-                        Amount
+                        Order ID
                     </th>
                     <th scope="col" class="px-6 py-3 hover:text-sky-400">
                         Action
@@ -128,7 +128,7 @@ require("./dataBase.php");
                     $to = $_GET['to'];
                     $orders = $db->selectOrdersByDate($userID, $from, $to);
                 } else {
-                    $orders = $db->selectUserOrders($userID);
+                    $orders = $db->selectUserOrdersFilteredByDate($userID);
                 }
                 foreach ($orders as $order) {
                 ?>
@@ -143,13 +143,16 @@ require("./dataBase.php");
                             </div>
                         </td>
                         <th scope="row" class="px-6 py-4 text-lg text-gray-900 dark:text-white whitespace-nowrap text-center">
-                            <?php echo $order["date"] ?>
+                            <?php
+                            $date = new DateTime($order["date"]);
+                            echo $date->format('g:ia \o\n l jS F Y');
+                            ?>
                         </th>
                         <td class="px-6 py-4 text-lg capitalize text-center">
                             <?php echo $order["status"] ?>
                         </td>
                         <td class="px-6 py-4 text-center text-lg">
-                            <?php echo $order["totalPrice"] ?>
+                            <?php echo $order["id"] ?>
                         </td>
                         <td class="px-6 py-4 text-center text-lg">
                             <a href="deleteOrder.php?id=<?php echo $order['id'] ?>" class="trash btn <?php if ($order['status'] != 'processing') {

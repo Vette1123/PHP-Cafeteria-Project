@@ -207,7 +207,7 @@ require("./dataBase.php");
                                         if (isset($_GET['from']) && isset($_GET['to'])) {
                                             $orders = $db->selectOrdersByDate($user['id'], $from, $to);
                                         } else {
-                                            $orders = $db->selectUserOrders($user['id']);
+                                            $orders = $db->selectUserOrdersFilteredByDate($user['id']);
                                         }
                                         foreach ($orders as $order) {
                                         ?>
@@ -219,7 +219,9 @@ require("./dataBase.php");
                                                         </svg>
                                                     </button>
                                                 </td>
-                                                <td class="px-8 py-8 text-lg text-gray-900 dark:text-white whitespace-nowrap text-center"><?php echo $order["date"] ?></td>
+                                                <td class="px-8 py-8 text-lg text-gray-900 dark:text-white whitespace-nowrap text-center"><?php
+                                                                                                                                            $date = new DateTime($order["date"]);
+                                                                                                                                            echo $date->format('g:ia \o\n l jS F Y'); ?></td>
                                                 <td class="px-8 py-8 text-center text-xl"><?php echo $order["totalPrice"] ?></td>
                                             </tr>
                                             <tr class="collapse" id="<?php echo "cont2" . $order['id'] ?>">
