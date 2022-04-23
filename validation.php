@@ -1,6 +1,14 @@
 <?php
-include 'dbconnect.php';
+error_reporting(E_ALL ^ E_WARNING); 
+
+// include 'dbconnect.php';
+
+require('./ConnectDB.php');
+
+$db = new ConnectDB();
+
 session_start();
+
 
 $errors=[];
 
@@ -12,12 +20,15 @@ if(isset($_POST['submit'])){
   $email=$_POST['email'];
   $pass=$_POST['password'];
 
-  $sql="SELECT * FROM users WHERE email='$email' AND password='$pass' ;";
-  $res=mysqli_query($conn,$sql);
+  // $sql="SELECT * FROM users WHERE email='$email' AND password='$pass' ;";
+  // $res=mysqli_query($conn,$sql);
 
-  if($res->num_rows > 0){
+  $row=$db->checkEmail($email,$pass);
 
-    $row=mysqli_fetch_assoc($res);
+
+  if($row){
+
+    // $row=mysqli_fetch_assoc($res);
 
    $_SESSION['name']=$row['name'];
    $_SESSION['role']=$row['role'];
@@ -27,7 +38,7 @@ if(isset($_POST['submit'])){
    $_SESSION['login']='login';
    
    if($_SESSION['role']==='admin'){
-     header("Location: products.php");
+     header("Location: ./admin/myOrder.php");
    }
    else{
     header("Location: products.php");
@@ -53,5 +64,5 @@ if(empty($_POST['password']) or $_POST['password']==" "){
 }
 if(count($errors)>0){
     $err=json_encode($errors);
-            header("Location:sign in.php?errors={$err}");  # issue url --> get method
+            header("Location:sign_in.php?errors={$err}");  # issue url --> get method
         }

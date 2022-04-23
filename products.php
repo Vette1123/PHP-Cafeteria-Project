@@ -4,7 +4,7 @@
     if($_SESSION['id']){
         $userId = $_SESSION['id'];
     }else{
-        header("Location:sign in.php");
+        header("Location:sign_in.php");
     }
     $latestOrderProducts = [];
     

@@ -22,7 +22,7 @@ if (isset($_GET['errors'])) {
         <img class="mx-auto h-12 w-auto" src="coffee-cup-svgrepo-com.svg" alt="Workflow">
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in </h2>
       </div>
-      <form class="mt-8 space-y-6" action="validation.php" method="POST">
+      <form class="mt-8 space-y-6" action="./validation.php" method="POST">
         <input type="hidden" name="remember" value="true">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>

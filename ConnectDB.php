@@ -11,15 +11,26 @@ class ConnectDB
     public  function __construct()
     {
         try {
-            $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;'; #port number
-            $user = 'root';
-            $password = 'Awad36148';
+            $dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;'; #port number
+            $user = 'abdallah';
+            $password = '*Right0107377';
             $this->db = new PDO($dsn, $user, $password);
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
     }
 
+
+    public function checkEmail($email,$pass){
+        $sql="SELECT * FROM users WHERE email='$email' AND password='$pass' ;";
+        $stmt = $this->db->prepare($sql);
+         $stmt->execute();
+        $user=$stmt->fetch();
+
+        return $user;
+
+
+    }
 
     public function orderDeliverd($id)
     {
@@ -69,6 +80,7 @@ class ConnectDB
 
     public function selectAllByTableName($table_name)
     {
+
         $query = "SELECT * FROM $table_name";
         $stmt = $this->db->prepare($query);
         $stmt->execute();

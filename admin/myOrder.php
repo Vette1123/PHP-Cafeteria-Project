@@ -1,19 +1,16 @@
 <?php
-error_reporting(E_ALL ^ E_WARNING); 
-    require("../ConnectDB.php");
-    include('../layouts/adminNav.php');
+  error_reporting(E_ALL ^ E_WARNING); 
 
-     session_start();
-
-    if(   $_SESSION['login']='login' and $_SESSION['role']==='admin'){
-        header("Location: myOrder.php");
-      }
-      else{
-       header("Location: ../sign_in.php");
-      }
-
+    require("../ConnectDB.php");   
 
     $db = new ConnectDB();
+
+     session_start();
+    if($_SESSION['role'] !== 'admin'){
+       header("Location: ../sign_in.php");
+    }
+    
+
     $orders = $db->selectAllByTableName("orders");
 
 ?>
@@ -32,7 +29,8 @@ error_reporting(E_ALL ^ E_WARNING);
 </head>
 
 <body>
-    <?php adminNav("abdallah saber",'../images/person_2.jpg'); ?>
+
+   <?php include('../layouts/navbar.php') ?>
 
     <div class="relative overflow-x-auto  shadow-md sm:rounded-lg container mx-auto my-12 " data-accordion="collapse" id="accordion-flush">
         <table class="w-full text-sm text-gray-500  dark:text-gray-400">
