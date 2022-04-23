@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
  function usersNav($name,$profile_pic){
   
 echo "
@@ -11,6 +12,23 @@ echo "
 
     <ul
       class='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium'
+=======
+function usersNav($name, $profile_pic)
+{
+
+  echo "
+<nav class='navbar navbar-expand-lg navbar-dark bg-gray-800'>
+  <div class='container-fluid'>
+    <a class='navbar-brand' href='#'>Cafetria</a>
+    <button
+      class='navbar-toggler'
+      type='button'
+      data-bs-toggle='collapse'
+      data-bs-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent'
+      aria-expanded='false'
+      aria-label='Toggle navigation'
+>>>>>>> 5a3f76bea8ba9dac4422c6ca88352b45ed4abb98
     >
       <li>
         <a
@@ -60,9 +78,13 @@ echo "
       </li>
     </ul>
   </div>
+<<<<<<< HEAD
 </div>
 
 "
 ;
 
+=======
+</nav>";
+>>>>>>> 5a3f76bea8ba9dac4422c6ca88352b45ed4abb98
 }
