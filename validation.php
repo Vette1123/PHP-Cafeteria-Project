@@ -47,5 +47,3 @@ if(count($errors)>0){
     $err=json_encode($errors);
             header("Location:sign in.php?errors={$err}");  # issue url --> get method
         }
-    
-?>

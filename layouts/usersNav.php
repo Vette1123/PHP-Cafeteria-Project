@@ -1,8 +1,9 @@
 <?php
 
-function usersNav($name,$profile_pic){
+function usersNav($name, $profile_pic)
+{
 
-echo "
+  echo "
 <nav class='navbar navbar-expand-lg navbar-dark bg-gray-800'>
   <div class='container-fluid'>
     <a class='navbar-brand' href='#'>Cafetria</a>
@@ -49,8 +50,4 @@ echo "
     </div>
   </div>
 </nav>";
-
 }
-
-
-

@@ -4,18 +4,19 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-class ConnectDB{
+class ConnectDB
+{
 
-        private $db;
+    private $db;
 
-    public  function __construct(){
+    public  function __construct()
+    {
         try {
-            $dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;'; #port number
-            $user = 'abdallah';
-            $password = '*Right0107377';
-           $this->db= new PDO($dsn, $user, $password);
-
-        }catch (Exception $ex){
+            $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;'; #port number
+            $user = 'root';
+            $password = 'Awad36148';
+            $this->db = new PDO($dsn, $user, $password);
+        } catch (Exception $ex) {
             echo $ex->getMessage();
         }
     }
@@ -176,11 +177,4 @@ class ConnectDB{
             return false;
         }
     }
-
-
-
-
 }
-
-
-

@@ -1,5 +1,14 @@
 <?php
 require("./dataBase.php");
+session_start();
+
+if ($_SESSION['login']) {
+    header("Location: myOrders.php");
+} else {
+    header("Location: sign_in.php");
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +129,7 @@ require("./dataBase.php");
                 <?php
                 // to add user id through sessions
                 // to be added session file ("../Admin/views/sessionValidtion.php");
-                $userID = 2; //till now its
+                $userID = $_SESSION['id']; //till now its
                 $db = new Database();
                 $db->connect();
                 if (isset($_GET['from']) && isset($_GET['to'])) {

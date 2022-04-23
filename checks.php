@@ -1,5 +1,13 @@
 <?php
 require("./dataBase.php");
+session_start();
+
+if ($_SESSION['role'] === 'admin') {
+    header("Location: checks.php");
+} else {
+    header("Location: sign_in.php");
+}
+
 ?>
 
 <!DOCTYPE html>
