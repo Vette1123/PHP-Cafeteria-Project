@@ -4,34 +4,44 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-class DataBase
-{
-    private $serverName;
-    private $userName;
-    private $userPass;
-    private $dbName;
-    private $charSet;
-    private $dsn;
-    private $db;
+class ConnectDB{
 
-    public function __construct()
-    {
-        $this->serverName  = "127.0.0.1";
-        $this->userName = "abdallah";
-        $this->userPass  = "*Right0107377";
-        $this->dbName = "cafetria";
-        $this->charSet = "utf8mb4";
+        private $db;
 
-        $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
-    }
-    public function connect()
-    {
+    public  function __construct(){
         try {
-            $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
-        } catch (PDOException $err) {
-            die($err->getMessage());
+            $dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;'; #port number
+            $user = 'abdallah';
+            $password = '*Right0107377';
+           $this->db= new PDO($dsn, $user, $password);
+
+        }catch (Exception $ex){
+            echo $ex->getMessage();
         }
     }
+
+
+    public function orderDeliverd($id)
+    {
+        try {
+            $sql = 'UPDATE `orders` SET `status`= "Delivered" WHERE id =' . $id . ' ';
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+
+    // public function deletedCanclefOrder($order_id){
+
+    //     $delete_query='delete from orders where id = :id ;';
+    //     $stmt=$this->db->prepare($delete_query);
+    //     $stmt->execute([':id' => $order_id]);
+    // }
+
+
     public function selectOrdersByDate($uid, $from, $to)
     {
 
@@ -168,4 +178,9 @@ class DataBase
     }
 
 
+
+
 }
+
+
+
