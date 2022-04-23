@@ -16,6 +16,8 @@ if(isset($_POST['update'])){
 			if ($result2) {
 				$row=mysqli_fetch_assoc($result);
                 $_SESSION['name']=$row['name'];
+                $_SESSION['id']=$row['id'];
+                $_SESSION['profile_Picture']=$row['profile_Picture'];
                 $_SESSION['role']=$row['role'];
                 $_SESSION['login']='login';
                 if($_SESSION['role']==='admin'){

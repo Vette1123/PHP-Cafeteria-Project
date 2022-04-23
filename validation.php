@@ -14,6 +14,9 @@ if(isset($_POST['submit'])){
     $row=mysqli_fetch_assoc($res);
    $_SESSION['name']=$row['name'];
    $_SESSION['role']=$row['role'];
+   $_SESSION['id']=$row['id'];
+   $_SESSION['profile_Picture']=$row['profile_Picture'];
+   $_SESSION['role']=$row['role'];
    $_SESSION['login']='login';
    if($_SESSION['role']==='admin'){
      header("Location: products.php");

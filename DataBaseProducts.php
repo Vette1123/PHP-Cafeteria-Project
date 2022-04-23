@@ -133,9 +133,7 @@ class DataBase
     }
     public function showusers()
     {
-
         try {
-
             $query1 = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id  GROUP BY name";
             $stmt = $this->db->prepare($query1);
             $stmt->execute();
@@ -218,5 +216,13 @@ class DataBase
         $stmt->execute();
         $orderId = $stmt->fetchColumn();
         return $orderId;
+    }
+
+    public function showAllUsers(){
+        $query = "SELECT id, name FROM users where role <> 'admin'";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $allUsers = $stmt->fetchAll();
+        return $allUsers;
     }
 }

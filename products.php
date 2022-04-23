@@ -1,33 +1,48 @@
 <?php 
-    include('./DataBase.php');
-    $userId = 3;
+    include('./DataBaseProducts.php');
+    session_start();
+    if($_SESSION['id']){
+        $userId = $_SESSION['id'];
+    }else{
+        header("Location:sign in.php");
+    }
     $latestOrderProducts = [];
     
     $DB = new DataBase();
     $DB->connect();
-    getLastOrder();
     
-
+    
     if(isset($_POST['search'])){
         $allProducts = $DB->searchProducts($_POST["search"]);
     }else{
         $allProducts = $DB->selectAllByTableName('products');
     }
-
+    
+    if($_SESSION['role'] == 'admin'){
+        $allUsers = $DB->showAllUsers();
+    }else{
+        getLastOrder();
+    }
 
     if(isset($_POST['cart'])){
+        if($_SESSION['role'] == 'admin' && in_array((int)$_POST['clientId'],$DB->getAllTableIDs('users'))){
+            $userId = $_POST['clientId'];
+        }
         $allProductsId = $DB->getAllTableIDs('products');
         $orderProducts = array_intersect_key( $_POST , array_flip( $allProductsId ) );
         if(!empty($orderProducts)){
         $totalPrice = 0;
         foreach ($orderProducts as $key => $value) {
-            $totalPrice += (float)$DB->getProductPrice($key)[0] * (int)$value;
+            $totalPrice += (float)$DB->getProductPrice($key)[0] * abs((int)$value);
         }
         $orderId = $DB->placeOrder($userId, $totalPrice);
         $DB->placeOrderDetails($orderId, $orderProducts);
-        getLastOrder();
+        if($_SESSION['role'] == 'user'){
+            getLastOrder();
+        }
     }
     }
+
 
     function getLastOrder(){
         global $DB;
@@ -126,7 +141,7 @@
 
                     <div class="form-controls mt-4 mb-10">
                         <label for="rooms" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select your room</label>
-                        <select value="<?php if(isset($olddata->country)) {echo $olddata->country;} ?>" name="room" id="rooms" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <select name="room" id="rooms" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                         <option value="2003"  >2003</option>
                         <option value="2004" >2004</option>
                         <option value="2005" >2005</option>
@@ -134,6 +149,17 @@
                         </select>
                     </div>
                     <hr>
+                    <?php
+                    if(isset($allUsers)){
+                echo "<div class='form-controls mt-4 mb-10'>
+                        <label for='rooms' class='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'>Select client</label>
+                        <select name='clientId' id='rooms' class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'>";
+                        foreach ($allUsers as $user) { 
+                            echo "<option value={$user['id']}  >{$user['name']}</option>";
+                        }
+                    echo "</select></div><hr>";
+                    }
+                    ?>
                     <div class="flex items-center justify-between my-6" >
                     <p class="text-2xl">Total Price: </p>
                     <h2 class="text-4xl"><span class="total-price">55</span> EGP</h2>
