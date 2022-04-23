@@ -19,10 +19,10 @@ if(isset($_POST['update'])){
                 $_SESSION['role']=$row['role'];
                 $_SESSION['login']='login';
                 if($_SESSION['role']==='admin'){
-                    header("Location: welcomeAdmin.php");
+                    header("Location: products.php");
                 }
                 else{
-                    header("Location: welcome.php");
+                    header("Location: products.php");
                 }
                             }}
          

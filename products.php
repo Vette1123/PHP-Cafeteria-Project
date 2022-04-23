@@ -117,20 +117,7 @@
                 <h2 class="text-center text-6xl mb-9">Cart</h2>
                 <form action="" method="POST" >
                     <div class="cart-items">
-                        <!-- <div class="form-controls p-2 flex items-center mb-3" product="1">
-                            <label class="mr-auto">product</label>
-                            <div class="counter ml-6 flex">
-                                <button type="button" data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-10 w-10 rounded-l cursor-pointer outline-none">
-                                <span class="m-auto text-2xl font-thin">−</span>
-                                </button>
-                                <input value="1" type="number" class="outline-none focus:outline-none text-center w-10 bg-gray-300 font-semibold text-md hover:text-black focus:text-black h-10 md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
-                                <button type="button" data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-10 w-10 rounded-r cursor-pointer">
-                                    <span class="m-auto text-2xl font-thin">+</span>
-                                </button>
-                            </div>
-                            <p class="ml-6">EGP <span class="product_cost">25</span></p>
-                            <button data-action="remove" class="ml-6 btn btn-info btn-sm">X</button>
-                        </div> -->
+                        
                     </div>
                     <div class="form-controls mt-4">
                         <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your notes</label>

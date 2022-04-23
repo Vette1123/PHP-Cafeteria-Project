@@ -1,7 +1,7 @@
 <?php
 $server="localhost";
 $username = 'root';
-$database="cafetria";
+$database="cafeteria";
 $password = '';
 $conn=mysqli_connect($server,$username,$password,$database);
 if(!$conn){
