@@ -37,9 +37,7 @@
         }
         $orderId = $DB->placeOrder($userId, $totalPrice);
         $DB->placeOrderDetails($orderId, $orderProducts);
-        if($_SESSION['role'] == 'user'){
-            getLastOrder();
-        }
+        header("Location:myOrders.php");
     }
     }
 
@@ -174,7 +172,7 @@
                            echo" <h2 class='text-4xl sm:text-left text-center  font-bold my-6'>Latest Order</h2>
                             <section class='latest grid sm:grid-cols-3 grid-cols-1 gap-4 mt-4 mb-6'>";
                             foreach ($latestOrderProducts as $product) { 
-                                echo   "<div class='drink card w-100 border h-100 shadow-ms rounded hover:shadow-lg p-4 mb-4' drink-id={$product['id']} drink-name={$product['name']} drink-price={$product['price']}>
+                                echo   "<div class='drink card w-100 border h-100 shadow-ms rounded hover:shadow-lg p-4 mb-4' drink-id={$product['id']} drink-name='{$product['name']}' drink-price={$product['price']}>
                                        <img src='http://localhost/php_project/images/product_image/{$product['picture']}' class='w-full h-80 card-image' />
                                        <div class='flex justify-between items-center mt-4'>
                                        <h3 class='text-2xl'>{$product['name']}</h3>

@@ -2,9 +2,7 @@
 require("./dataBase.php");
 session_start();
 
-if ($_SESSION['login']) {
-    header("Location: myOrders.php");
-} else {
+if (!$_SESSION['login']) {
     header("Location: sign_in.php");
 }
 
