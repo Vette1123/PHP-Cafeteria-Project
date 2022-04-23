@@ -1,56 +1,68 @@
 <?php
 
-function usersNav($name,$profile_pic){
-
+ function usersNav($name,$profile_pic){
+  
 echo "
-<nav class='navbar navbar-expand-lg navbar-dark bg-gray-800'>
-  <div class='container-fluid'>
-    <a class='navbar-brand' href='#'>Cafetria</a>
-    <button
-      class='navbar-toggler'
-      type='button'
-      data-bs-toggle='collapse'
-      data-bs-target='#navbarSupportedContent'
-      aria-controls='navbarSupportedContent'
-      aria-expanded='false'
-      aria-label='Toggle navigation'
-    >
-      <span class='navbar-toggler-icon'></span>
-    </button>
-    <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-      <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
-        <li class='nav-item'>
-          <a class='nav-link active' aria-current='page' href='#'>Home</a>
-        </li>
-        <li class='nav-item'>
-          <a class='nav-link' href='#'>My Orders</a>
-        </li>
-      </ul>
-      <div class='d-flex justify-between'>
-        <b class='text-white my-2 text-xxl'>{$name}</b>
+<div class='navbar bg-slate-800 text-neutral-content'>
+  <div class='container mx-auto'>
+    <a class='btn btn-ghost normal-case text-xl' href='myOrders.php'>
+      Cafetria
+    </a>
 
-        <div class='flex items-center mx-5'>
-          <button
-            type='button'
-            class='flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600'
-            id='user-menu-button'
-            aria-expanded='false'
-            data-dropdown-toggle='dropdown'
-          >
-            <img
-              class='w-8 h-8 rounded-full'
-              src='{$profile_pic}'
-              alt='user photo'
-            />
-          </button>
-        </div>
-        <a href='#' class='btn btn-dark text-white'>Logout</a>
-      </div>
-    </div>
+    <ul
+      class='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium'
+    >
+      <li>
+        <a
+          href='#'
+          class='block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href='#'
+          class='block py-2 pr-4 pl-3 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+        >
+          My Order
+        </a>
+      </li>
+    </ul>
   </div>
-</nav>";
+
+  <div class='flex-none gap-2'></div>
+  <div class='dropdown dropdown-end'>
+    <label tabindex='0' class='btn btn-ghost btn-circle avatar'>
+      <div class='w-10 rounded-full'>
+        <img src='https://api.lorem.space/image/face?hash=33791' />
+      </div>
+    </label>
+    <ul
+      tabindex='0'
+      style='background-color: rgba(13, 33, 41, 0.918)'
+      class='mt-3 p-2 shadow menu menu-compact dropdown-content bg-slate-900 rounded-box w-52'
+    >
+      <li>
+        <a
+          href='#'
+          class='block py-2 px-4 hover:bg-gray-700 dark:hover:bg-gray-600 dark:hover:text-dark'
+        >
+          <b>{$name}</b>
+        </a>
+      </li>
+      <li>
+        <a
+          href='#'
+          class='block py-2 px-4 hover:bg-gray-700 dark:hover:bg-gray-600 dark:hover:text-dark'
+          >LogOut</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+"
+;
 
 }
-
-
-

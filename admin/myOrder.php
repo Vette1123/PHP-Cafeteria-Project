@@ -1,6 +1,18 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING); 
     require("../ConnectDB.php");
     include('../layouts/adminNav.php');
+
+     session_start();
+
+    if(   $_SESSION['login']='login' and $_SESSION['role']==='admin'){
+        header("Location: myOrder.php");
+      }
+      else{
+       header("Location: ../sign_in.php");
+      }
+
+
     $db = new ConnectDB();
     $orders = $db->selectAllByTableName("orders");
 
@@ -15,19 +27,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Orders</title>
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
-    />
+    /> -->
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.13.6/dist/full.css" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body>
-    <?php adminNav("abdallah saber",'../images/person_2.jpg'); ?>
+    <!-- <?php adminNav("abdallah saber",'../images/person_2.jpg'); ?> -->
+
+    <?php include '../layouts/newuserNav.html' ?>
 
     <div class="relative overflow-x-auto  shadow-md sm:rounded-lg container mx-auto my-12 " data-accordion="collapse" id="accordion-flush">
         <table class="w-full text-sm text-gray-500  dark:text-gray-400">
@@ -150,8 +163,8 @@
 
     <script src=" https://unpkg.com/flowbite@1.4.1/dist/flowbite.js">
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+        <script src="https://cdn.tailwindcss.com"></script>
+
 </body>
 
 </html>

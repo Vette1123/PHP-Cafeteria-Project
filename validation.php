@@ -1,23 +1,31 @@
 <?php
 include 'dbconnect.php';
 session_start();
+
 $errors=[];
+
 if (isset($_SESSION['name'])) {
     error_reporting(0);
 }
+
 if(isset($_POST['submit'])){
   $email=$_POST['email'];
   $pass=$_POST['password'];
+
   $sql="SELECT * FROM users WHERE email='$email' AND password='$pass' ;";
   $res=mysqli_query($conn,$sql);
+
   if($res->num_rows > 0){
+
     $row=mysqli_fetch_assoc($res);
+
    $_SESSION['name']=$row['name'];
    $_SESSION['role']=$row['role'];
    $_SESSION['id']=$row['id'];
    $_SESSION['profile_Picture']=$row['profile_Picture'];
    $_SESSION['role']=$row['role'];
    $_SESSION['login']='login';
+   
    if($_SESSION['role']==='admin'){
      header("Location: products.php");
    }

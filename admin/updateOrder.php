@@ -8,7 +8,10 @@ $id=$_REQUEST['id'];
 
 // var_dump($id);
 
-if(isset($id)){
+session_start();
+  
+if( $_SESSION['login']='login' and $_SESSION['role']==='admin'){
+  if(isset($id)){
     try {
 
       $is_done=$db->orderDeliverd($id);
@@ -21,5 +24,9 @@ if(isset($id)){
       }catch (Exception $ex){
           $ex->getMessage();
       }
-
 }
+  
+}else{
+  header("Location: ../sign_in.php");
+ }
+
