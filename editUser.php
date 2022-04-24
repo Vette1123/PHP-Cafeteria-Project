@@ -4,8 +4,8 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 if (isset($_GET["errors"])){
   $errors = json_decode($_GET["errors"]);
-  // var_dump($errors);
-  // exit;
+   var_dump($errors);
+  
 }
 if (isset($_GET["olddata"])){
   $olddata = json_decode($_GET["olddata"]);

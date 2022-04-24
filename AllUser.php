@@ -1,14 +1,4 @@
-<?php 
-session_start();
-if($_SESSION['role']==='admin'){
 
-   header("Location: AllUser.php");
-   }
-   else{
-    header("Location: login.php");
-   }
-   
-?>
  <!DOCTYpE html>
 <html lang="en">
 

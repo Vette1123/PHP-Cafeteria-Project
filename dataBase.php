@@ -56,10 +56,11 @@ class DataBase
     }
 
 
-    public function updateUser($data, $user_id ,$img){
+    public function updateUser($data, $user_id){
 // var_dump($data);
-// // var_dump($i);
+
 // exit;
+
         try{
             
           $db= $this->connect();
@@ -70,27 +71,16 @@ class DataBase
             
               $roomNum=$data['roomNum'];
               $ext=$data['ext'];
+              $img=$data['profile_Picture'];
               
               
              }
              
-             if(isset($img)){
-              $up_stmt = 'UPDATE `users` SET `name`=:fullname , `email`=:email,`password`=:mypassword,`roomNum`=:roomNum,`ext`=:ext,`profile_picture`="'.$img.'" WHERE id=:id';}
-              
-          else {
-            $up_stmt = "UPDATE `users` SET `name`=:fullname , `email`=:email,`password`=:mypassword,`roomNum`=:roomNum,`ext`=:ext WHERE id=:id";
             
-           
-          }
-        //   $mydata = [
-        //     ':fullname' => $name,
-        //     ':email' => $email,
-        //     ':mypassword' => $password,
-        //     ':course' => $repeatpassword,
-        //     ':stud_id' => $roomNum,
-        //     ':ext' =>$ext,
-        //     var_dump(':ext')
-        // ];
+              $up_stmt = 'UPDATE `users` SET `name`=:fullname , `email`=:email,`password`=:mypassword,`roomNum`=:roomNum,`ext`=:ext,`profile_picture`="'.$img.'" WHERE id=:id';
+              
+          
+      
        
              $update_stmt = $db->prepare($up_stmt);
              $update_stmt->bindParam(":id",$user_id ,PDO::PARAM_INT );

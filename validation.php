@@ -26,11 +26,17 @@
         $olddata["email"] = ($_POST["email"]);}}
         
    
-    if (empty($_POST["password"])){
-        $errors["password"]="password is required";
-    }else{
-        $olddata["password"] = $_POST["password"];
-    }
+   
+        if (empty($_POST["password"])){
+            $errors["password"]="password is required";
+        }else{
+            $pass_pattern = "/^[a-z0-9_]{8,10}$/";
+        if (!empty($_POST['password'])&& !preg_match_all($pass_pattern, $_REQUEST["password"], $matches)) {
+            $errors["password"]="password must than 8";
+        }
+        else{
+            $olddata["password"] = $_POST["password"];
+        }}
     if (empty($_POST["repeatpassword"])){
         $errors["repeatpassword"]="repeatpassword is required";
     }else  {
