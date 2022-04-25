@@ -1,14 +1,12 @@
 <?php
   error_reporting(E_ALL ^ E_WARNING); 
 
-    require("../ConnectDB.php");   
+    require("./ConnectDB.php");   
 
     $db = new ConnectDB();
+    $allowUsers = ['admin'];
+    include('./authGuard.php');
 
-     session_start();
-    if($_SESSION['role'] !== 'admin'){
-       header("Location: ../sign_in.php");
-    }
     
 
     $orders = $db->selectAllByTableName("orders");
@@ -30,7 +28,7 @@
 
 <body>
 
-   <?php include('../layouts/navbar.php') ?>
+   <?php include('layouts/navbar.php') ?>
 
     <div class="relative overflow-x-auto  shadow-md sm:rounded-lg container mx-auto my-12 " data-accordion="collapse" id="accordion-flush">
         <table class="w-full text-sm text-gray-500  dark:text-gray-400">
@@ -106,7 +104,7 @@
                             ?>
                                 <!-- to be deleted -->
                                 <div class="w-60 m-6 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                                    <img class="p-8 rounded-t-lg" src="<?php echo "../images/product_image/" . $product['picture'] ?>" alt="product image">
+                                    <img class="p-8 rounded-t-lg" src="<?php echo "./images/product_image/" . $product['picture'] ?>" alt="product image">
                                     <div class="px-5 pb-5">
                                         <h5 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white capitalize text-center "><?php echo $product['name'] ?></h5>
                                         <div class="flex justify-center my-4">

@@ -1,11 +1,8 @@
 <?php 
     include('./DataBaseProducts.php');
-    session_start();
-    if($_SESSION['id']){
-        $userId = $_SESSION['id'];
-    }else{
-        header("Location:sign_in.php");
-    }
+    $allowUsers = ['user', 'admin'];
+    include('./authGuard.php');
+    $userId = $_SESSION['id'];
     $latestOrderProducts = [];
     
     $DB = new DataBase();
@@ -104,6 +101,7 @@
         } */
     </style>
 </head>
+<?php include('./layouts/navbar.php'); ?>
 <body >
     <section class="products flex-col min-h-screen flex">
         <div class="container mx-auto">

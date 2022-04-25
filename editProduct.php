@@ -1,5 +1,6 @@
 <?php
-
+$allowUsers = ['admin'];
+include('./authGuard.php');
 $userID = $_GET['id'];
 require 'dbclass.php';
 try {

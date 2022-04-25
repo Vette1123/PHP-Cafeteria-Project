@@ -32,13 +32,14 @@ if(isset($_POST['submit'])){
 
    $_SESSION['name']=$row['name'];
    $_SESSION['role']=$row['role'];
+   $_SESSION['email']=$row['email'];
    $_SESSION['id']=$row['id'];
    $_SESSION['profile_Picture']=$row['profile_Picture'];
    $_SESSION['role']=$row['role'];
    $_SESSION['login']='login';
    
    if($_SESSION['role']==='admin'){
-     header("Location: ./admin/myOrder.php");
+     header("Location: ./myOrder.php");
    }
    else{
     header("Location: products.php");

@@ -1,5 +1,7 @@
 <?php
 error_reporting(E_ALL ^ E_WARNING); 
+$allowUsers = ['admin'];
+include('./authGuard.php');
 require 'dbclass.php';
 $db = new DataBase();
 $categoryRows=$db->Select("Select * from category");
@@ -18,12 +20,11 @@ error_reporting(E_ALL ^ E_WARNING);
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+
 <!-- <link rel='stylesheet' href='style.css'/> -->
-<title>Document</title>
+<title>Add product</title>
 <style>
-    *{
-         background-color:#EEE;
-        }
     form{
         margin:50px auto;
         width:50%;
@@ -31,7 +32,9 @@ error_reporting(E_ALL ^ E_WARNING);
 </style>
 </head>
 <body>
-    <div class="container">
+<?php include('./layouts/navbar.php'); ?>
+
+    <div class="container mx-auto">
     
         <form method="post" action="addProduct.php"  enctype="multipart/form-data">
 
@@ -80,7 +83,7 @@ error_reporting(E_ALL ^ E_WARNING);
                         }
                         ?>
                  </select>
-                 <a href='addCategoryForm.php' style='float:right'> Add Category</a>
+                 <div class="my-3"><a href='addCategoryForm.php' class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300">Add Category</a></div>
                 <?php
                     if(isset($errors->category)){
                         echo "<p style='color:red;font-size:12px'> $errors->category</p>";
@@ -113,6 +116,7 @@ error_reporting(E_ALL ^ E_WARNING);
             </div>
         </form>
     </div>
+    <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
 
 </body>
 

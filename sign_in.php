@@ -2,7 +2,8 @@
 if (isset($_GET['errors'])) {
   $errors = json_decode($_GET['errors']);
 }
-
+$allowUsers=[];
+include('./authGuard.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

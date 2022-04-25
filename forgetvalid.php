@@ -19,13 +19,9 @@ if(isset($_POST['update'])){
                 $_SESSION['id']=$row['id'];
                 $_SESSION['profile_Picture']=$row['profile_Picture'];
                 $_SESSION['role']=$row['role'];
+                $_SESSION['email']=$row['email'];
                 $_SESSION['login']='login';
-                if($_SESSION['role']==='admin'){
                     header("Location: products.php");
-                }
-                else{
-                    header("Location: products.php");
-                }
                             }}
          
           else if($result->num_rows==0 and $_POST['email']!==" " and filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){

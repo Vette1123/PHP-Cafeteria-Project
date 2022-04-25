@@ -2,6 +2,10 @@
 if(isset($_GET['errors'])){
   $errors=json_decode($_GET['errors']);
 }
+
+$allowUsers=[];
+include('./authGuard.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +80,7 @@ if(isset($_GET['errors'])){
 
         <div class="text-sm">
             <p class="font-light text-indigo-600 hover:text-indigo-500">Remember your password ?</p>
-          <a href="sign in.php"class="font-medium text-indigo-600 no-underline  hover: underline text-indigo-500 ">sign in</a>
+          <a href="sign_in.php"class="font-medium text-indigo-600 no-underline  hover: underline text-indigo-500 ">sign in</a>
         </div>
       </div>
 

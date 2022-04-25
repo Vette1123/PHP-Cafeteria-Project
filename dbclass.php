@@ -5,7 +5,7 @@ class Database{
     private $connection = null;
     public function __construct(){
         try{
-            $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3307;'; #port number
+            $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;'; #port number
             $user = 'root';
             $password = '';
             $this->connection = new PDO($dsn,$user,$password);

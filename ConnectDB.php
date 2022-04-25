@@ -11,9 +11,9 @@ class ConnectDB
     public  function __construct()
     {
         try {
-            $dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;'; #port number
-            $user = 'abdallah';
-            $password = '*Right0107377';
+            $dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;'; #port number
+            $user = 'root';
+            $password = '';
             $this->db = new PDO($dsn, $user, $password);
         } catch (Exception $ex) {
             echo $ex->getMessage();

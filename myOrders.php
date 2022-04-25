@@ -1,11 +1,7 @@
 <?php
 require("./dataBase.php");
-session_start();
-
-if (!$_SESSION['login']) {
-    header("Location: sign_in.php");
-}
-
+$allowUsers = ['user'];
+include('./authGuard.php');
 
 ?>
 
@@ -24,7 +20,8 @@ if (!$_SESSION['login']) {
 </head>
 
 <body>
-    <?php include './tempNav.html'  ?>
+<?php include('./layouts/navbar.php'); ?>
+
     <div class="m-12 ">
         <?php include './slider.html'  ?>
         <!-- Dates from to and stuff -->
