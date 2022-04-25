@@ -12,7 +12,7 @@ include('./authGuard.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Sign in</title>
   <link rel='stylesheet' href='https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css' />
 </head>
 
@@ -20,7 +20,7 @@ include('./authGuard.php');
   <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
-        <img class="mx-auto h-12 w-auto" src="coffee-cup-svgrepo-com.svg" alt="Workflow">
+        <img class="mx-auto h-12 w-auto" src="./images/logo.png" alt="Workflow">
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in </h2>
       </div>
       <form class="mt-8 space-y-6" action="./validation.php" method="POST">

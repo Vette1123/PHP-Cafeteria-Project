@@ -1,4 +1,7 @@
-
+<?php
+ $allowUsers = ['admin'];
+ include('./authGuard.php');
+?>
  <!DOCTYpE html>
 <html lang="en">
 
@@ -6,19 +9,20 @@
   <title>Cafeteria</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel='stylesheet' href='https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css'/> />
+<link rel='stylesheet' href='https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css'/> 
 
 </head>
 
 <body>
 
-  <?php   require_once("adminNav.php");
-  ?>
+ <?php include('./layouts/navbar.php') ?>
+
+
   <!-- END nav -->
-  <section class="container user-home">
+  <section class="container user-home mx-auto">
     <div class="d-flex justify-content-between align-items-center pt-3" >
-    <h2><a href=""> Users</a> </h2>
-    <h2 style="text-decoration: underline;"><a href="addUser.php">Add User</a></h2>
+    <h2 class="text-6xl"><a href=""> Users</a> </h2>
+    <div class='text-center my-6'><a class='text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'  href='AddUser.php'>Add User</a></div>
     </div>
     <hr />
    
@@ -40,14 +44,15 @@ Ext
 Image
 </th>
 <th scope="col" class="px-6 py-3">
-<span class="sr-only">Action</span>
+Actions
 </th>
+
 </tr>
 </thead>
 <tbody>
 <?php
 
-require_once("./Database.php");
+require_once("./DatabaseUsers.php");
 $db = new DataBase();
 try {
  $db->connect();
@@ -69,9 +74,9 @@ try {
 <?php echo $user["ext"] ?>
 </td>
 <td class="px-6 py-4">
-<img src="<?php echo "./image/". $user['profile_Picture'] ?>" class="col-xs-3" width="150px" height="150px" class="img-rounded">
+<img src="<?php echo "http://localhost/php_project/images/user_image/". $user['profile_Picture'] ?>" class="col-xs-3" width="150px" height="150px" class="img-rounded">
 </td>
-<td class="px-6 py-4 text-right">
+<td class="px-6 py-4">
 <h5><a href='editUser.php?id=<?php echo $user['id'] ?>'>Edit </a> - <a href='deleteUser.php?id=<?php echo $user['id'] ?>'>Delete</a></h5>
 </td>
 </tr>
@@ -91,6 +96,8 @@ try {
   </section>
   
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
+
 </body>
 
 </html>

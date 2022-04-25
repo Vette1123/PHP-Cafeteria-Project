@@ -1,4 +1,6 @@
 <?php
+ $allowUsers = ['admin'];
+ include('./authGuard.php');
 ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
@@ -10,7 +12,7 @@ if (isset($_GET["errors"])){
 if (isset($_GET["olddata"])){
   $olddata = json_decode($_GET["olddata"]);
 }
-require "database.php";
+include "DataBaseUsers.php";
 
 $record_id = $_GET["id"];
 //var_dump($_GET["id"]);
@@ -32,26 +34,12 @@ $row = $selectUser-> select_row($record_id);
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css"/> 
 </head>
 <body>
-  <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9">
+<?php include('./layouts/navbar.php') ?>
+  <div class="box-root padding-top--24 flex-flex flex-direction--column w-80 mx-auto" style="flex-grow: 1; z-index: 9">
     <div class="formbg-outer">
       <div class="formbg">
         <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">Cafateria</span>
-          </html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <title>php: cafateria</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-
-  <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9">
-    <div class="formbg-outer">
-      <div class="formbg">
-        <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">editUser</span>
+          <h1 class="padding-bottom--15 mb-6">editUser</h1>
           <form id="stripe-login" method="post" action="editValidation.php?id=<?php echo $record_id ?>"  enctype="multipart/form-data">
   
   <div class="grid xl:grid-cols-2 xl:gap-6">
@@ -90,7 +78,7 @@ $row = $selectUser-> select_row($record_id);
       </div>
   
   <div class="relative z-0 mb-6 w-full group">
-      <input type="email" name="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"value="<?php echo $row->email?>" /> 
+      <input type="email" name="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="<?php echo $row->email?>" /> 
       <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
       <?php
                         if(isset($errors->email)){
@@ -99,7 +87,7 @@ $row = $selectUser-> select_row($record_id);
            ?>         
     </div>
   <div class="relative z-0 mb-6 w-full group">
-      <input type="password" name="password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"value=""/>
+      <input type="password" name="password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="<?php echo $row->password?>"/>
       <label for="floating_password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
      <?php 
                         if(isset($errors->password)){
@@ -108,7 +96,7 @@ $row = $selectUser-> select_row($record_id);
     ?>                
     </div>
   <div class="relative z-0 mb-6 w-full group">
-      <input type="password" name="repeatpassword" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value=""/>
+      <input type="password" name="repeatpassword" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="<?php echo $row->password?>"/>
       <label for="floating_repeat_password" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
                      <?php  
                       if(isset($errors->repeatpassword)){
@@ -160,6 +148,7 @@ $row = $selectUser-> select_row($record_id);
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
 
 </body>
 

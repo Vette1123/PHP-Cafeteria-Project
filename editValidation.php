@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require "database.php";
+include "DataBaseUsers.php";
 $db = new Database();
 
 $record_id = $_REQUEST["id"];
@@ -93,7 +93,7 @@ $file_name = $_FILES['img']['name'];
         }
        
 else { $_REQUEST['profile_Picture']=$file_name;
-    move_uploaded_file($file_tmp, "./image/" .$file_name);
+    move_uploaded_file($file_tmp, "./images/user_image/" .$file_name);
      }
 
     }

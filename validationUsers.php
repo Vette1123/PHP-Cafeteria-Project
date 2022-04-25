@@ -71,7 +71,7 @@ if (!file_exists($file_tmp) || !is_uploaded_file($file_tmp)) {
 else{
     if (in_array($ext, $extensions)){
         $image =addslashes($file_name);
-        move_uploaded_file($file_tmp,"./image/".$file_name);
+        move_uploaded_file($file_tmp,"./images/user_image/".$file_name);
     }
     else{
         $errors['extimg']="imgerorr";
@@ -103,7 +103,7 @@ else{
         $ext =trim(htmlspecialchars($_POST['ext']));
         $image =strtolower(trim(htmlspecialchars($image)));
         $exist= false;
-             require_once("./Database.php");
+             include("./DatabaseUsers.php");
             $mydb = new DataBase();
             try {
                 $mydb ->connect();

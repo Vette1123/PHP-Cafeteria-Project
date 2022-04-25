@@ -24,22 +24,17 @@ error_reporting(E_ALL ^ E_WARNING);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
     <!-- <link rel='stylesheet' href='style.css'/> -->
-    <title>Document</title>
+    <title>Edit product</title>
     <style>
-        *{
-         background-color:#EEE;
-        }
-        label{
-            color:white;
-        }
         form{
-            margin:50px auto;
-            width:50%;
-        }
+        margin:50px auto;
+        width:50%;
+    }
     </style>
     </head>
     <body>
-        <div class="container">
+        <?php include('./layouts/navbar.php')?>
+        <div class="container mx-auto">
         <form method="post" action="<?php echo "updateProduct.php?id=". $row->id; ?>" enctype="multipart/form-data">
         <div class="mb-6">
                 <label for="productname" class="block mb-2 text-sm font-medium  text-gray-900 dark:text-gray-300">Product Name</label>
@@ -116,6 +111,7 @@ error_reporting(E_ALL ^ E_WARNING);
             </div>
             </form>
         </div>
+        <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
 
     </body>
 

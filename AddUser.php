@@ -1,4 +1,6 @@
 <?php
+ $allowUsers = ['admin'];
+ include('./authGuard.php');
     if (isset($_GET["errors"])){
         $errors = json_decode($_GET["errors"]);
         
@@ -10,35 +12,21 @@
  
 ?>
 <html>
-<?php   require_once("navbar.php");
-  ?>
+
 <head>
   <meta charset="utf-8" />
   <title></title>
-  <link rel='stylesheet' href='https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css'/> />
+  <link rel='stylesheet' href='https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css'/>
 </head>
 <body>
-  <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9">
+<?php include('./layouts/navbar.php') ?>
+
+  <div class="box-root padding-top--24 flex-flex flex-direction--column w-80 mx-auto mt-6 shadow-lg p-5" style="flex-grow: 1; z-index: 9">
     <div class="formbg-outer">
       <div class="formbg">
         <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">Cafateria</span>
-  </html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <title>php: cafateria</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-
-  <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9">
-    <div class="formbg-outer">
-      <div class="formbg">
-        <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">AddUser</span>
-          <form id="stripe-login" method="post" action="validation.php"  enctype="multipart/form-data">
+          <h1 class="padding-bottom--15 mb-6">AddUser</h1>
+          <form id="stripe-login" method="post" action="validationUsers.php"  enctype="multipart/form-data">
   
   <div class="grid xl:grid-cols-2 xl:gap-6">
     <div class="relative z-0 mb-6 w-full group">
@@ -114,12 +102,15 @@
                         <label for="validationCustom03" class="form-label">Image</label>
                         <input type="file" name="img" class=" form-label  " id="validationCustom03">
                        
-                            <label style="color: red">
-                                <?php if (isset($_GET["emptyimg"])) {
-                                    echo "<br>Image Require<br>";}
-                                    if (isset($_GET["extimg"])) {
-                                        echo "extension doesnt match <br>";
-                                } ?></label>
+                            
+                                <?php if (isset($errors->emptyimg)) {
+                                    echo "<label style='color: red'>Image Required</label><br>";
+                                  }else{
+                                    if (isset($errors->extimg)) {
+                                        echo "<label style='color: red'>Invalid photo</label><br>";
+                                  }
+                                    
+                                } ?>
 
                     </div>
 <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help"></div>
@@ -133,6 +124,8 @@
       </div>
     </div>
   </div>
+  <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
+
 </body>
 
 </html>

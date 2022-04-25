@@ -1,5 +1,5 @@
 <?php
- require_once("./Database.php");
+ require_once("./DatabaseUsers.php");
 $mydb = new DataBase();
 try {
     $mydb ->connect();

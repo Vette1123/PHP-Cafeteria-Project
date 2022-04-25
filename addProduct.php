@@ -26,7 +26,7 @@ error_reporting(E_ALL ^ E_WARNING);
         $olddata["image"] = $_FILES['image']['name'];
     }
 //------------------------------------------------------------------------------
-$target_dir = "files/";
+$target_dir = "images/product_image/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -65,7 +65,7 @@ if ($uploadOk == 0) {
     }
 }
 $filename=$_FILES['image']['name'];
-$image_path='files/'.$filename;
+$image_path=$filename;
 //-------------------------------------------------------------------------------
     if (count($errors)> 0){
         $err=json_encode($errors);

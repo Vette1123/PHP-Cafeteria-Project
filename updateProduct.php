@@ -24,13 +24,13 @@ require 'dbclass.php';
         $olddata2["category"] = $_POST["category"];
     }
     // if (empty($_FILES['image']['name'])){
-    //     $errors2["image"]="please add a Image";
+    //     $errors22["image"]="please add a Image";
     // }
     // else{
     //     $olddata2["image"] = $_FILES['image']['name'];
     // }
 //-----------------------------------------------------------------------------
-$target_dir = "files/";
+$target_dir = "images/product_image/";
 $target_file = $target_dir . basename($_FILES["image"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -45,34 +45,31 @@ if (isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-if (file_exists($target_file)) {
-    $errors['image'] = "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+
 
 if ($_FILES["image"]["size"] > 5000000) {
-    $errors['image'] = "Sorry, your file is too large.";
+    $errors2['image'] = "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 if (
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif"
 ) {
-    $errors['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $errors2['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
 }
 
 if ($uploadOk == 0) {
-    $errors['image'] = "Sorry, your file was not uploaded.";
+    $errors2['image'] = "Sorry, your file was not uploaded.";
 } else {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        $olddata['image'] = "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+        $olddata2['image'] = "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
     } else {
-        $errors['image'] = "Sorry, there was an error uploading your file.";
+        $errors2['image'] = "Sorry, there was an error uploading your file.";
     }
 }
 $filename=$_FILES['image']['name'];
-$image_path='files/'.$filename;
+$image_path=$filename;
 //-------------------------------------------------------------------------------
 $productname = $_POST['productname'];
 $price = $_POST['price'];
