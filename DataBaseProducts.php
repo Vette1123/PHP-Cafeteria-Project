@@ -13,8 +13,8 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "";
-        $this->dbName = "cafeteria";
+        $this->userPass  = "Awad36148";
+        $this->dbName = "tslemlarvelfinal";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
@@ -161,24 +161,27 @@ class DataBase
         }
     }
 
-    public function getAllTableIDs($tableName){
-        $query1 = "SELECT id from ".$tableName;
+    public function getAllTableIDs($tableName)
+    {
+        $query1 = "SELECT id from " . $tableName;
         $stmt = $this->db->prepare($query1);
         $stmt->execute();
         $ids_array = $stmt->fetchAll(PDO::FETCH_COLUMN);
         return $ids_array;
     }
 
-    public function getProductPrice($productId){
-        $query1 = "SELECT price from products where id = ".$productId;
+    public function getProductPrice($productId)
+    {
+        $query1 = "SELECT price from products where id = " . $productId;
         $stmt = $this->db->prepare($query1);
         $stmt->execute();
         $price = $stmt->fetch();
         return $price;
     }
 
-    public function placeOrder($userId, $totalPrice){
-        $date = (string )date("Y-m-d H:i:s");
+    public function placeOrder($userId, $totalPrice)
+    {
+        $date = (string)date("Y-m-d H:i:s");
         $query1 = "INSERT INTO orders (date, totalPrice,user_id) Values
         (?,?,?)";
         $stmt = $this->db->prepare($query1);
@@ -190,7 +193,8 @@ class DataBase
         return $id;
     }
 
-    public function placeOrderDetails($orderId, $detailsArr){
+    public function placeOrderDetails($orderId, $detailsArr)
+    {
         foreach ($detailsArr as $key => $value) {
             $query1 = "INSERT INTO orders_products (order_id, product_id,quantity) Values
             ($orderId, $key, $value)";
@@ -199,16 +203,18 @@ class DataBase
         }
     }
 
-    public function searchProducts($keyword){
-        $query="SELECT * FROM `products` WHERE `name` LIKE :keyword;";
+    public function searchProducts($keyword)
+    {
+        $query = "SELECT * FROM `products` WHERE `name` LIKE :keyword;";
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':keyword','%'.$keyword.'%');
+        $stmt->bindValue(':keyword', '%' . $keyword . '%');
         $stmt->execute();
         $products = $stmt->fetchAll();
         return $products;
     }
 
-    public function getLastOrderId($userId){
+    public function getLastOrderId($userId)
+    {
         //Getting last order
         $query = "SELECT id from orders where user_id = ? ORDER BY date DESC LIMIT 1";
         $stmt = $this->db->prepare($query);
@@ -218,7 +224,8 @@ class DataBase
         return $orderId;
     }
 
-    public function showAllUsers(){
+    public function showAllUsers()
+    {
         $query = "SELECT id, name FROM users where role <> 'admin'";
         $stmt = $this->db->prepare($query);
         $stmt->execute();

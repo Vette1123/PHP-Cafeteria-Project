@@ -13,8 +13,8 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "";
-        $this->dbName = "cafeteria";
+        $this->userPass  = "Awad36148";
+        $this->dbName = "tslemlarvelfinal";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
