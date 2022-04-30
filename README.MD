@@ -6,8 +6,8 @@
 
 ## Contributors:
 
-[Mohamed Elzohery](https://github.com/mohamed-elzohery){:target="\_blank" rel="noopener"} <br>
-[Abdullah Saber](https://github.com/abdullahSaber1){:target="\_blank" rel="noopener"} <br>
-[Ahmed Mohamed](https://github.com/ahmedmohamed1990){:target="\_blank" rel="noopener"} <br>
-[Sara Abdullah](https://github.com/saraabdalla238){:target="\_blank" rel="noopener"} <br>
-[Menna Abdou](https://github.com/Menna-Abdou){:target="\_blank" rel="noopener"} <br>
+[Mohamed Elzohery](https://github.com/mohamed-elzohery/jekyll-target-blank) <br>
+[Abdullah Saber](https://github.com/abdullahSaber1)<br>
+[Ahmed Mohamed](https://github.com/ahmedmohamed1990) <br>
+[Sara Abdullah](https://github.com/saraabdalla238)<br>
+[Menna Abdou](https://github.com/Menna-Abdou)<br>
