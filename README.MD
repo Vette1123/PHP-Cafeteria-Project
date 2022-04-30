@@ -1,8 +1,8 @@
 # To run this project, Install the following packages:
 
-## XAMPI or WAMP
+> XAMPI or WAMP
 
-## Connect to mySQL database, create a database called "cafeteria"
+> Connect to mySQL database, create a database called "cafeteria"
 
 ## Contributors:
 
